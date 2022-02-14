@@ -37,3 +37,7 @@ Route::controller(ProductController::class)->prefix('products')->group(function 
     Route::put('/update','update');
     Route::delete('/delete/{id}','delete');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
