@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +17,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+Route::controller(TagController::class)->prefix('tags')->group(function () {
+    Route::get('/','index');
+    Route::get('/create','create');
+    Route::get('/edit/{id}','edit');
+    Route::post('/save','store');
+    Route::put('/update','update');
+    Route::delete('/delete/{id}','delete');
+});
+
+Route::controller(ProductController::class)->prefix('products')->group(function () {
+    Route::get('/','index');
+    Route::get('/create','create');
+    Route::get('/edit/{id}','edit');
+    Route::post('/save','store');
+    Route::put('/update','update');
+    Route::delete('/delete/{id}','delete');
 });
