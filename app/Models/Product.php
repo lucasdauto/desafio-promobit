@@ -10,8 +10,11 @@ class Product extends Model
     use HasFactory;
 
     protected $table = "product";
-
     protected $primaryKey = "id";
+    protected $fillable = [ 'name' ];
 
-    protected $fillable = [ 'nome' ];
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class,'product_tag','product_id','id');
+    }
 }
