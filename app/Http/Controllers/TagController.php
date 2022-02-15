@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
@@ -38,18 +39,29 @@ class TagController extends Controller
     public function store(Request $request)
     {
         try {
-            $tagExist = Tag::withTrashed()->where('name', $request->name)->get();
-            if (!$tagExist) {
+            $tagExist = Tag::withTrashed()->where("name", $request->name)->get();
+            if (!count($tagExist)) {
                 $tag = Tag::create([
                     'name' => $request->input('name')
                 ]);
+                $message = [
+                    'color' => 'primary',
+                    'message' => 'Tag cadastrada com sucesso'
+                ];
+            } else {
+                Tag::onlyTrashed()->where("name", $request->name)->restore();
+                $tag = Tag::where("name", $request->name)->first();
+                $message = [
+                    "color" => " warning",
+                    "message" => "Registro de tag já existe"
+                ];
             }
         } catch (Exception $e) {
             return redirect()->route('tags.create')->with(['color' => 'danger', 'message' => $e]);
         }
         return redirect()
             ->route('tags.edit', ['id' => $tag->id])
-            ->with(['color' => 'primary', 'message' => 'Tag cadastrada com sucesso']);
+            ->with($message);
     }
 
     /**
