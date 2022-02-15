@@ -10,6 +10,7 @@ class Product extends Model
     protected $table = "product";
     protected $primaryKey = "id";
     protected $fillable = [ 'name' ];
+    public $timestamps = false;
 
     public function tags()
     {

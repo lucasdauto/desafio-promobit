@@ -38,9 +38,12 @@ class TagController extends Controller
     public function store(Request $request)
     {
         try {
-            $tag = Tag::create([
-                'name' => $request->input('name')
-            ]);
+            $tagExist = Tag::withTrashed()->where('name', $request->name)->get();
+            if (!$tagExist) {
+                $tag = Tag::create([
+                    'name' => $request->input('name')
+                ]);
+            }
         } catch (Exception $e) {
             return redirect()->route('tags.create')->with(['color' => 'danger', 'message' => $e]);
         }
@@ -103,7 +106,7 @@ class TagController extends Controller
     {
         try {
             Tag::find($id)->delete();
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route('tags.index')
                 ->with(['color' => 'danger', 'message' => 'Erro ao deletar uma tag']);
         }
