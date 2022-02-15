@@ -50,28 +50,13 @@
                 @else
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="Submenu-Dropdown" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                Services
-                            </a>
-                            <ul class="dropdown-menu rounded-3" aria-labelledby="Submenu-Dropdown">
-                                <li><a class="dropdown-item" href="#">Services One</a></li>
-                                <li><a class="dropdown-item" href="#">Services Two</a></li>
-                                <li><a class="dropdown-item" href="#">Services Three</a></li>
-                                <li><a class="dropdown-item" href="#">Services Four</a></li>
-                            </ul>
+                            <a class="nav-link" href="#">Produtos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Portfolio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="#">Tags</a>
                         </li>
                     </ul>
 
