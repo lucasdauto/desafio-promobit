@@ -24,19 +24,19 @@ Route::middleware(['auth'])->group(function (){
 
     Route::controller(TagController::class)->prefix('tags')->group(function () {
         Route::get('/','index')->name("tags.index");
-        Route::get('/create','create');
-        Route::get('/edit/{id}','edit');
-        Route::post('/save','store');
-        Route::put('/update','update');
-        Route::delete('/delete/{id}','delete');
+        Route::get('/create','create')->name("tags.create");
+        Route::get('/edit/{id}','edit')->name("tags.edit");
+        Route::post('/save','store')->name("tags.save");
+        Route::put('/update','update')->name("tags.update");
+        Route::delete('/delete/{id}','destroy')->name("tags.delete");
     });
 
     Route::controller(ProductController::class)->prefix('products')->group(function () {
-        Route::get('/','index');
-        Route::get('/create','create');
-        Route::get('/edit/{id}','edit');
-        Route::post('/save','store');
-        Route::put('/update','update');
-        Route::delete('/delete/{id}','delete');
+        Route::get('/','index')->name("products.index");
+        Route::get('/create','create')->name("products.create");
+        Route::get('/edit/{id}','edit')->name("products.edit");
+        Route::post('/save','store')->name("products.save");
+        Route::put('/update','update')->name("products.update");
+        Route::delete('/delete/{id}','delete')->name("products.delete");
     });
 });

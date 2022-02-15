@@ -12,6 +12,7 @@ class Tag extends Model
     protected $table = "tag";
     protected $primaryKey = "id";
     protected $fillable = [ "name" ];
+    public $timestamps = false;
 
     public function products()
     {
