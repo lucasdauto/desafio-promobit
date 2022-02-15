@@ -16,7 +16,6 @@ class TagController extends Controller
     public function index()
     {
         $tags = Tag::paginate(10);
-
         return view('tags.home', compact('tags'));
     }
 
@@ -62,17 +61,6 @@ class TagController extends Controller
         return redirect()
             ->route('tags.edit', ['id' => $tag->id])
             ->with($message);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
