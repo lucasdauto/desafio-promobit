@@ -23,7 +23,7 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::controller(TagController::class)->prefix('tags')->group(function () {
-        Route::get('/','index');
+        Route::get('/','index')->name("tags.index");
         Route::get('/create','create');
         Route::get('/edit/{id}','edit');
         Route::post('/save','store');

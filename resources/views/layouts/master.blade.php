@@ -12,12 +12,14 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
 <div id="app">
@@ -56,7 +58,7 @@
                             <a class="nav-link" href="#">Produtos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Tags</a>
+                            <a class="nav-link" href="{{ route('tags.index') }}">Tags</a>
                         </li>
                     </ul>
 
@@ -90,5 +92,6 @@
         @yield('content')
     </main>
 </div>
+
 </body>
 </html>
