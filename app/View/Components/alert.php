@@ -7,13 +7,27 @@ use Illuminate\View\Component;
 class alert extends Component
 {
     /**
+     * The message type.
+     *
+     * @var string
+     */
+    public $type;
+
+    /**
+     * content of alert.
+     *
+     * @var string
+     */
+    public $content;
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(string $type, string $content)
     {
-        //
+        $this->type = $type;
+        $this->content = $content;
     }
 
     /**
