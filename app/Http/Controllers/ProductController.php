@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ProductController extends Controller
 {
@@ -11,9 +13,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index():Response
     {
-        //
+        $products = Product::paginate(10);
+        return view('products.home', compact('products'));
     }
 
     /**
@@ -21,9 +24,9 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create():Response
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -79,6 +82,14 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            Product::find($id)->delete();
+        } catch (\Exception $e) {
+            return redirect()->route('products.index')
+                ->with(['color' => 'danger', 'message' => 'Erro ao deletar um produto']);
+        }
+
+        return redirect()->route('products.index')
+            ->with(['color' => 'primary', 'message' => 'Produto deletado com sucesso']);
     }
 }
