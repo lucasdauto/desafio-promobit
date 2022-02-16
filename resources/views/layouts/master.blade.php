@@ -55,7 +55,7 @@
                             <a class="nav-link active" aria-current="page" href="#">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Produtos</a>
+                            <a class="nav-link" href="{{ route('products.index') }}">Produtos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('tags.index') }}">Tags</a>
