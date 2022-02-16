@@ -25,9 +25,18 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col">
                                 <label for="name" class="form-label"> Nome:</label>
                                 <input type="text" class="form-control" name="name" required>
+                            </div>
+                            <div class="col">
+                                <label for="tags" class="form-label">Tags: </label>
+                                <select name="tags[]" class="form-control">
+                                    <option value="">Selecione uma opção</option>
+                                    @foreach($tags as $tag)
+                                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -42,3 +51,9 @@
         </div>
     </div>
 @endsection
+
+@push('script')
+    <script>
+        $('select').selectpicker();
+    </script>
+@endpush

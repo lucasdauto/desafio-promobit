@@ -110,9 +110,7 @@ class TagController extends Controller
             return redirect()->route('tags.index')
                 ->with(['color' => 'danger', 'message' => 'Erro ao deletar uma tag']);
         }
-
         return redirect()->route('tags.index')
             ->with(['color' => 'primary', 'message' => 'Tag deletada com sucesso']);
-
     }
 }
