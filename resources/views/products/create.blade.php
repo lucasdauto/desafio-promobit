@@ -31,10 +31,9 @@
                             </div>
                             <div class="col">
                                 <label for="tags" class="form-label">Tags: </label>
-                                <select name="tags[]" class="form-control">
-                                    <option value="">Selecione uma opção</option>
+                                <select class="select2-multiple form-control" name="tags[]" multiple="multiple">
                                     @foreach($tags as $tag)
-                                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                        <option value="{{ $tag->id }}">{{$tag->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -52,8 +51,16 @@
     </div>
 @endsection
 
-@push('script')
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-        $('select').selectpicker();
+        $(document).ready(function() {
+            // Select2 Multiple
+            $('.select2-multiple').select2({
+                placeholder: "Selecione as tags para o produto",
+                allowClear: true
+            });
+
+        });
     </script>
 @endpush
