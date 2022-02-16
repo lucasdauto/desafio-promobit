@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -13,7 +14,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index():Response
+    public function index()
     {
         $products = Product::paginate(10);
         return view('products.home', compact('products'));
@@ -24,9 +25,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create():Response
+    public function create()
     {
-        return view('products.create');
+        $tags = Tag::all();
+        return view('products.create', compact('tags'));
     }
 
     /**
