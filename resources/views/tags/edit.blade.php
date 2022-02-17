@@ -1,9 +1,8 @@
 @extends('layouts.master')
-
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <form action="{{ route('tags.update') }}" method="post">
+            <form action="{{ route('tags.update', ['id' =>$tag->id]) }}" method="post">
                 @csrf
                 @method('PUT')
                 <div class="card">
@@ -29,3 +28,17 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+    @if(session()->exists('message'))
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'success'
+            })
+        });
+    @endif
+    </script>
+@endpush

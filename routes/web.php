@@ -20,14 +20,14 @@ use App\Http\Controllers\ProductController;
 
 
 Route::middleware(['auth'])->group(function (){
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::any('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::controller(TagController::class)->prefix('tags')->group(function () {
         Route::get('/','index')->name("tags.index");
         Route::get('/create','create')->name("tags.create");
         Route::get('/edit/{id}','edit')->name("tags.edit");
         Route::post('/save','store')->name("tags.save");
-        Route::put('/update','update')->name("tags.update");
+        Route::put('/update/{id}','update')->name("tags.update");
         Route::delete('/delete/{id}','destroy')->name("tags.delete");
     });
 
