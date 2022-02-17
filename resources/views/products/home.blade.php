@@ -17,6 +17,7 @@
                                 <thead>
                                 <td>Código</td>
                                 <td>Nome</td>
+                                <td>Tags</td>
                                 <td width="20%"></td>
                                 </thead>
                                 <tbody>
@@ -24,6 +25,11 @@
                                     <tr>
                                         <td>{{ $product->id }}</td>
                                         <td>{{ $product->name }}</td>
+                                        <td>
+                                            @foreach($product->tags as $tag)
+                                                <span class="badge rounded-pill bg-secondary">{{$tag->name}}</span>
+                                            @endforeach
+                                        </td>
                                         <td class="d-flex justify-content-around">
                                             <a href="{{ route('products.edit',['id'=>$product->id]) }}"
                                                class="btn btn-sm btn-primary">Editar</a>
