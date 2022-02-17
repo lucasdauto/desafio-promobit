@@ -3,9 +3,7 @@
 - [Desafio Promobit](#desafio-promobit)
     - [Objetivo](#objetivo)
     - [Requisito](#requisitos)
-    - [Requisitos](#requisitos)
-    - [Techs](#techs-obrigatrio)
-    - [Como entregar](#como-entregar)
+    - [Docker](#docker)
 
 ## Objetivo
 O objetivo é Criação de CRUD de produtos, tags e extração de relatório de relevância de produtos.
@@ -77,3 +75,8 @@ $ npm run dev
 # Rodar servidor
 $ php artisan serve
 ```
+
+## Docker
+
+Caso queira usar docker a propria framework Laravel apartir da versão 8.* tem uma conjunto de ferramentas que facilita a criação do container e também para rodar seus projetos nele.
+Segue o link da documentação para consulta de como utlizar [Sail](https://laravel.com/docs/8.x/sail)
