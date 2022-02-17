@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <form action="{{ route('products.update') }}" method="post">
+            <form action="{{ route('products.update', ['id' => $product->id]) }}" method="post">
                 @csrf
                 @method('PUT')
                 <div class="card">

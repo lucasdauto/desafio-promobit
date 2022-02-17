@@ -40,15 +40,24 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = new Product();
-        $product->name = $request->name;
-        $product->save();
-        foreach ($request->tags as $tag) {
-            $product->tags()->attach($tag);
+        try {
+            $product = new Product();
+            $product->name = $request->name;
+            $product->save();
+            foreach ($request->tags as $tag) {
+                $product->tags()->attach($tag);
+            }
+            $message = [
+                'color' => 'primary',
+                'message' => 'Produto cadastrado com sucesso'
+            ];
+        }catch (\Exception $e) {
+            $message = [
+                "color" => " warning",
+                "message" => "Erro ao cadastrar produto"
+            ];
         }
-
-        $product->save();
-        return redirect()->route('products.edit', ['id' => $product->id]);
+        return redirect()->route('products.edit', ['id' => $product->id])->with($message);
     }
 
     /**
@@ -76,7 +85,25 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $product = Product::findOrFail($id);
+            $product->tags()->detach();
+            $product->name = $request->name;
+            foreach ($request->tags as $tag) {
+                $product->tags()->attach($tag);
+            }
+            $product->save();
+            $message = [
+                'color' => 'primary',
+                'message' => 'Produto atualizado com sucesso'
+            ];
+        } catch (\Exception $e) {
+            $message = [
+                "color" => " warning",
+                "message" => "Erro ao atualizar produto"
+            ];
+        }
+        return redirect()->route('products.edit', ['id' => $id])->with($message);
     }
 
     /**
@@ -88,13 +115,19 @@ class ProductController extends Controller
     public function destroy($id)
     {
         try {
-            Product::find($id)->delete();
+            $product = Product::find($id);
+            $product->tags()->detach();
+            $product->delete();
+            $message = [
+                'color' => 'primary',
+                'message' => 'Produto deletado com sucesso'
+            ];
         } catch (\Exception $e) {
-            return redirect()->route('products.index')
-                ->with(['color' => 'danger', 'message' => 'Erro ao deletar um produto']);
+            $message = [
+                'color' => 'danger',
+                'message' => 'Erro ao deletar um produto'
+            ];
         }
-
-        return redirect()->route('products.index')
-            ->with(['color' => 'primary', 'message' => 'Produto deletado com sucesso']);
+        return redirect()->route('products.index')->with($message);
     }
 }
