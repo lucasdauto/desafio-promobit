@@ -20,7 +20,10 @@ use App\Http\Controllers\ProductController;
 
 
 Route::middleware(['auth'])->group(function (){
-    Route::any('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', function (){
+       return view('home');
+    });
 
     Route::controller(TagController::class)->prefix('tags')->group(function () {
         Route::get('/','index')->name("tags.index");
